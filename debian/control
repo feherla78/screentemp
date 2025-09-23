@@ -1,0 +1,12 @@
+Source: screentemp
+Section: utils
+Priority: optional
+Maintainer: Laszlo Feher<feherlaszlo78@gmail.com>
+Build-Depends: debhelper (>= 9), python3, python3-setuptools
+Standards-Version: 4.5.0
+
+Package: screentemp
+Architecture: all
+Build-Depends: debhelper-compat (= 13), dh-python, python3-all
+Description: A simple GTK app to adjust screen color temperature
+

@@ -1,0 +1,27 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Debian packaging outputs
+*.deb
+*.dsc
+*.build
+*.changes
+*.tar.gz
+debian/.debhelper/
+debian/files
+debian/screentemp/
+
+# Logs
+*.log

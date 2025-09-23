@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ScreenTemp
+Comment=Adjust your screen temperature
+Exec=screentemp
+Icon=screentemp
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupNotify=true
