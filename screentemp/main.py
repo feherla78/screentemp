@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-
-import gi, subprocess
+"""screentemp app to adjust color temperature"""
+import subprocess
+import gi
+from gi.repository import GLib
+from gi.repository import Gdk
+from gi.repository import Gtk
 gi.require_version("Gtk", "3.0")
 gi.require_version("Gdk", "3.0")
-from gi.repository import GLib, Gdk, Gtk
+
+
 
 class TempSlider(Gtk.Window):
+    """main window"""
     def __init__(self):
         super().__init__(title="ScreenTemp")
         self.set_decorated(False)
@@ -46,16 +52,17 @@ class TempSlider(Gtk.Window):
         self.add(vbox)
 
     def on_value_changed(self, widget):
+        """update and run xsct"""
         value = int(widget.get_value())
         self.label.set_text(f"{value} K")
-        subprocess.run(["xsct", str(value)])
+        subprocess.run(["xsct", str(value)], check=True)
 
         if self.auto_close_id is not None:
             GLib.source_remove(self.auto_close_id)
         self.auto_close_id = GLib.timeout_add(2000, Gtk.main_quit)
 
-
 def main():
+    """main function"""
     win = TempSlider()
     win.connect("destroy", Gtk.main_quit)
 
@@ -78,7 +85,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    
 
 
-		
-		
+    

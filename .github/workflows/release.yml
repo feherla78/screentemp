@@ -1,0 +1,33 @@
+name: Build and Release DEB
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Trigger only on version tags like v0.1.0
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y python3-gi python3-setuptools debhelper dh-python
+
+      - name: Build DEB package
+        run: |
+          dpkg-buildpackage -us -uc
+
+      - name: Upload DEB to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ../screentemp_*.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
